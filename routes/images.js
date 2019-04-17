@@ -4,11 +4,11 @@ const multerConfig = require("../config/multer");
 const fs = require("fs");
 
 
-router.get ("/get", (req, res) => {
+router.get ("/images", (req, res) => {
     res.send(_getAllFilesFromFolder("./uploads"));
 });
 
-router.post("/images", multerConfig.saveToUploads, (req, res) => {
+router.post("/upload", multerConfig.saveToUploads, (req, res) => {
     if (!req.file) {
          return res.status(400).json({
             success: false,

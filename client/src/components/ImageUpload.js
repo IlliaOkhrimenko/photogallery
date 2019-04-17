@@ -26,7 +26,7 @@ class ImageUpload extends Component {
     const fd = new FormData();
     fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
     axios
-      .post('http://localhost:5000/api/images', fd, {
+      .post('http://localhost:5000/api/upload', fd, {
         onUploadProgress: progressEvent => {
           console.log(
             'Upload Progress: ' +
@@ -43,7 +43,7 @@ class ImageUpload extends Component {
   fileLoadHandler = (event) => {
     event.preventDefault();
     axios
-      .get('http://localhost:5000/api/get')
+      .get('http://localhost:5000/api/images')
       .then(response => {
         console.log(response.data);
         this.props.updateData(response.data);
