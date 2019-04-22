@@ -1,28 +1,32 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
-class ImageUpload extends Component {
+import './ImageUpload.css';
+
+export default class ImageUpload extends Component {
   state = {
-    selectedFile: null,
+    selectedFile: null
   };
 
-  fileSelectedHandler = event => {
-
+  fileSelectedHandler = e => {
     let reader = new FileReader();
-    let file = event.target.files[0];
+    let file = e.target.files[0];
 
     reader.onloadend = () => {
       this.setState({
         selectedFile: file,
         imagePreviwUrl: reader.result
       });
-    }
+    };
 
     reader.readAsDataURL(file);
   };
 
-  fileUploadHandler = (event) => {
-    event.preventDefault();
+  fileUploadHandler = e => {
+    e.preventDefault();
+    if (this.state.selectedFile === null) {
+      return console.log('Choose file to upload first');
+    }
     const fd = new FormData();
     fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
     axios
@@ -40,12 +44,11 @@ class ImageUpload extends Component {
       });
   };
 
-  fileLoadHandler = (event) => {
-    event.preventDefault();
+  fileLoadHandler = e => {
+    e.preventDefault();
     axios
       .get('http://localhost:5000/api/images')
       .then(response => {
-        console.log(response.data);
         this.props.updateData(response.data);
       })
       .catch(error => {
@@ -55,19 +58,12 @@ class ImageUpload extends Component {
 
   render() {
     return (
-      <Fragment>
-        <form>
-          <input
-            type="file"
-            onChange={this.fileSelectedHandler}
-          />
-          <img className="imgPreview" src={this.state.imagePreviwUrl} alt=""></img>
-          <button onClick={this.fileUploadHandler}>Upload</button>
-          <button onClick={this.fileLoadHandler}>Load</button>
-        </form>
-      </Fragment>
+      <form>
+        <input type="file" onChange={this.fileSelectedHandler} />
+        <img className="img-preview" src={this.state.imagePreviwUrl} alt="" />
+        <button onClick={this.fileUploadHandler}>Upload</button>
+        <button onClick={this.fileLoadHandler}>Load</button>
+      </form>
     );
   }
 }
-
-export default ImageUpload;

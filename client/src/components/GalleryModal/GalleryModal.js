@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-class GalleryModal extends Component {
-  constructor() {
-    super();
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
+import './GalleryModal.css';
+
+export default class GalleryModal extends Component {
   componentDidMount() {
     document.body.addEventListener('keydown', this.handleKeyDown);
   }
-  handleKeyDown(e) {
+
+  handleKeyDown = e => {
     if (e.keyCode === 27) this.props.closeModal();
     if (e.keyCode === 37 && this.props.hasPrev) this.props.findPrev();
     if (e.keyCode === 39 && this.props.hasNext) this.props.findNext();
-  }
+  };
+
   render() {
     const {
       closeModal,
@@ -22,49 +22,45 @@ class GalleryModal extends Component {
       findPrev,
       src
     } = this.props;
+
     if (!src) {
-      console.log('whut');
       return null;
     }
+
     return (
       <div>
         <div className="modal-overlay" onClick={closeModal} />
-        <div isOpen={!!src} className="modal">
+        <div className="modal">
           <div className="modal-body">
-            <a
-              href="#"
+            <button
               className="modal-close"
               onClick={closeModal}
               onKeyDown={this.handleKeyDown}
             >
               &times;
-            </a>
+            </button>
             {hasPrev && (
-              <a
-                href="#"
+              <button
                 className="modal-prev"
                 onClick={findPrev}
                 onKeyDown={this.handleKeyDown}
               >
                 &lsaquo;
-              </a>
+              </button>
             )}
             {hasNext && (
-              <a
-                href="#"
+              <button
                 className="modal-next"
                 onClick={findNext}
                 onKeyDown={this.handleKeyDown}
               >
                 &rsaquo;
-              </a>
+              </button>
             )}
-            <img src={src} />
+            <img src={src} alt="" />
           </div>
         </div>
       </div>
     );
   }
 }
-
-export default GalleryModal;

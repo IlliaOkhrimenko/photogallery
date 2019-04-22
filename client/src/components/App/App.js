@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import Gallery from './components/Gallery';
-import ImageUpload from './components/ImageUpload';
 import axios from 'axios';
 
-class App extends Component {
+import Gallery from '../Gallery';
+import ImageUpload from '../ImageUpload';
+
+import './App.css';
+
+export default class App extends Component {
   state = {
     imgUrls: []
   };
@@ -13,7 +15,6 @@ class App extends Component {
     axios
       .get('http://localhost:5000/api/images')
       .then(response => {
-        console.log(response.data);
         this.updateData(response.data);
       })
       .catch(error => {
@@ -34,5 +35,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
