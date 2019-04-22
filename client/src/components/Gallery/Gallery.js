@@ -4,7 +4,7 @@ import GalleryModal from '../GalleryModal';
 
 import './Gallery.css';
 
-class Gallery extends Component {
+export default class Gallery extends Component {
  
   state = { currentIndex: null }
 
@@ -66,5 +66,3 @@ class Gallery extends Component {
     );
   }
 }
-
-export default Gallery;

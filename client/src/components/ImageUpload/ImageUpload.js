@@ -5,7 +5,8 @@ import './ImageUpload.css';
 
 export default class ImageUpload extends Component {
   state = {
-    selectedFile: null
+    selectedFile: null,
+    imagePreviwUrl: null
   };
 
   fileSelectedHandler = e => {
