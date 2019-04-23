@@ -11,7 +11,7 @@ const https = require('https');
 
 const port = config.get('port');
 
-const BOT_TOKEN = config.get('token');
+const BOT_TOKEN = process.env.BOT_TOKEN || config.get('token');
 const bot = new Telegraf(BOT_TOKEN);
 
 //Telegram bot
@@ -45,10 +45,6 @@ app.use(
   })
 );
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.static(path.join(__dirname, '/uploads')));
 
@@ -58,6 +54,6 @@ app.use(morgan('dev'));
 
 app.use('/api', images);
 
-app.listen(port, function() {
+app.listen(process.env.PORT || port, function() {
   console.log('Server started on port ' + port);
 });
