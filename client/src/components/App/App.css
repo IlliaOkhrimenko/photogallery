@@ -1,6 +1,9 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
+body {
+  background-color: #E3E8FF;
+}
 
 .App {
   text-align: center;

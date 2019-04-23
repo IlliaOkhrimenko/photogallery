@@ -2,12 +2,12 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 999;
+  z-index: 1;
   max-width: 100%;
   max-height: 100%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
-  width: 600px;
+  width: 50%;
   padding: 20px;
   border-radius: 3%;
 }
@@ -21,6 +21,21 @@
   padding: 10px;
   border-radius: 4px;
   border-bottom: 4px solid #15824B;
+  transition: all .2s ease;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.image-remove-btn {
+  display: block;
+  width: 40%;
+  margin: 10px auto;
+  color: #fff;
+  background: #cc0000;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #bb0000;
   transition: all .2s ease;
   text-transform: uppercase;
   font-weight: 700;
@@ -50,7 +65,7 @@
   padding: 60px 0;
 }
 
-.preview-image {
+.image-preview {
   max-height: 200px;
   max-width: 200px;
   margin: auto;

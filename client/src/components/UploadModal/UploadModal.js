@@ -28,7 +28,15 @@ export default class UploadModal extends Component {
     };
 
     reader.readAsDataURL(file);
+    e.target.value = null;
   };
+
+  removeSelectedFile = () => {
+    this.setState({
+      selectedFile: null,
+      imagePreviewUrl: null
+    });
+  }
 
   fileUploadHandler = e => {
     if (this.state.selectedFile === null) {
@@ -90,17 +98,19 @@ export default class UploadModal extends Component {
                 className="image-upload-input"
                 type="file"
                 onChange={this.fileSelectedHandler}
+                title=" "
                 ref={this.fileInput}
               />
               <div className="drag-text">
-                <h3>Drag and drop image or select upload image</h3>
+                <h3>Drag and drop image or select add image</h3>
               </div>
             </div>
           </DropZone>
           {imagePreviewUrl !== null ? (
-            <div>
-              <img className="preview-image" src={imagePreviewUrl} alt="" />
-              <button onClick={this.fileUploadHandler}>Upload</button>
+            <div className="image-preview-wrap">
+              <img className="image-preview" src={imagePreviewUrl} alt="" />
+              <button className="image-remove-btn" onClick={this.removeSelectedFile}>remove image</button>
+              <button className="image-upload-btn" onClick={this.fileUploadHandler}>Upload</button>
             </div>
           ) : (
             ''
