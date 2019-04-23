@@ -29,12 +29,11 @@ var _getAllFilesFromFolder = function(dir) {
 
     fs.readdirSync(dir).forEach(function(file) {
 
-       // file = dir+'/'+file;
         var stat = fs.statSync(dir+'/'+file);
 
         if (stat && stat.isDirectory()) {
             results = results.concat(_getAllFilesFromFolder(file))
-        } else results.push("http://localhost:5000/" + file);
+        } else results.push("/" + file);
 
     });
 
