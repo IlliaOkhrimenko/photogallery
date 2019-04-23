@@ -23,7 +23,7 @@ export default class App extends Component {
 
   fetchData = () => {
     axios
-      .get('http://localhost:5000/api/images')
+      .get('/api/images')
       .then(response => {
         this.updateData(response.data);
       })

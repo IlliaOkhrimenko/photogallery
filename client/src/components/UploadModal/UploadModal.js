@@ -45,7 +45,7 @@ export default class UploadModal extends Component {
     const fd = new FormData();
     fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
     axios
-      .post('http://localhost:5000/api/upload', fd, {
+      .post('/api/upload', fd, {
         onUploadProgress: progressEvent => {
           console.log(
             'Upload Progress: ' +
