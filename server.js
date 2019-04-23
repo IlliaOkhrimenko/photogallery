@@ -9,7 +9,7 @@ const cors = require('cors');
 const fs = require('fs');
 const https = require('https');
 
-const port = config.get('port');
+const port = process.env.PORT || config.get('port');
 
 const BOT_TOKEN = process.env.BOT_TOKEN || config.get('token');
 const bot = new Telegraf(BOT_TOKEN);
@@ -54,6 +54,6 @@ app.use(morgan('dev'));
 
 app.use('/api', images);
 
-app.listen(process.env.PORT || port, function() {
+app.listen(port, function() {
   console.log('Server started on port ' + port);
 });
